@@ -45,8 +45,9 @@ A Python project that tracks **Tesla's (TSLA)** stock price using the [Alpha Van
 - export NEWS_API_KEY="your_newsapi_key"
 - export TWILIO_SID="your_twilio_sid"
 - export TWILIO_AUTH_TOKEN="your_twilio_auth_token"
----
-# Run the Script
+
+
+## Run the Script
 
 python main.py
 
