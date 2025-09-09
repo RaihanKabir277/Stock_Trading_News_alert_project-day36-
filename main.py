@@ -51,8 +51,10 @@ if diff_pecentage > 0:
     three_articles =news_articles[:3]
     # print(three_articles)
     formatted_news_list = [f"Headline: {article['title']}. \nBrief: {article['description']}" for article in three_articles]
-    print(formatted_news_list)
+    # print(formatted_news_list)
+    for article in formatted_news_list:
 
-
-
+        # --------------twilio import--------
+        # go to the twilio website import twilio client , copy sid and auth then
+        # see twilio demo messsage send then create it by your own verify number and beccessary secure documents
 
