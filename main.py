@@ -6,6 +6,7 @@ STOCK_ENDPOINT = "https://www.alphavantage.co/query"
 NEWS_ENDPOINT = "https://newsapi.org/v2/everything"
 
 STOCK_API_KEY = "A22188536L1NZJ2P"
+NEWS_API_KEY = "a791e4b3f1194739918a0f35730cd37d"
 
 stock_params = {
     "function" : "TIME_SERIES_DAILY",
@@ -34,11 +35,24 @@ day_before_yesterday_closing_data = stock_list[1]["4. close"]
 positive_diff = abs(float(yesterday_closing_stock_data) - float(day_before_yesterday_closing_data))
 # print(positive_diff)
 
-# ------- the percenatge difference of two days ------------
+# ------- the percenatge difference of two days and call news api ------------
 diff_pecentage = (positive_diff / float(yesterday_closing_stock_data)) * 100
 # print(diff_pecentage)
-if diff_pecentage > 5:
-    print("Get News")
+
+if diff_pecentage > 0:
+    news_params = {
+        "apikey" : NEWS_API_KEY,
+        "q" : COMPANY_NAME,
+    }
+    news_response = requests.get(url=NEWS_ENDPOINT,params=news_params)
+    news_response.raise_for_status()
+    news_articles = news_response.json()["articles"]
+    # -----slicing for get at first 3 articles -------
+    three_articles =news_articles[:3]
+    # print(three_articles)
+    formatted_news_list = [f"Headline: {article['title']}. \nBrief: {article['description']}" for article in three_articles]
+    print(formatted_news_list)
+
 
 
 
